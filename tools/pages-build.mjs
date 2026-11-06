@@ -29,7 +29,7 @@ for (const file of walk('docs')) {
   if (!/\.(html|css)$/.test(file)) continue;
   const before = readFileSync(file, 'utf8');
   const after = before
-    .replace(/(href|src)="\/(?!\/)/g, `$1="${base}/`)
+    .replace(/(href|src|srcset|poster|data-src|data-poster)="\/(?!\/)/g, `$1="${base}/`)
     .replace(/url\(\/(?!\/)/g, `url(${base}/`);
   if (after !== before) { writeFileSync(file, after); touched++; }
 }
